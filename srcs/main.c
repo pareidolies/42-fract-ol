@@ -1,111 +1,70 @@
 #include "../includes/fractol.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_putstr_fd_color(char *str, int fd, char *color)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	ft_putstr_fd(color, fd);
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd(ANSI_COLOR_RESET, fd);
 }
 
-int	create_trgb(int t, int r, int g, int b)
+void	print_manual(void)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	ft_pustr_fd_color("----- MANUAL -----\n", 2, ANSI_COLOR_BLUE);
+	ft_pustr_fd_color("1. ./fractol Mandelbrot\n", 2, ANSI_COLOR_BLUE);
+	ft_pustr_fd_color("2. ./fractol Julia Re(C) Im(C)\n", 2, ANSI_COLOR_BLUE);
+	ft_pustr_fd_color("------------------", 2, ANSI_COLOR_BLUE);
 }
 
-/*int	add_shade(double distance, int color)
+int	is_float(char *str)
 {
-}*/
-
-int	get_t(int trgb)
-{
-	return ((trgb >> 24) & 0xFF);
-}
-
-int	get_r(int trgb)
-{
-	return ((trgb >> 16) & 0xFF);
-}
-
-int	get_g(int trgb)
-{
-	return ((trgb >> 8) & 0xFF);
-}
-
-int	get_b(int trgb)
-{
-	return (trgb & 0xFF);
-}
-
-int	get_opposite(int color)
-{
-	int	t;
-	int	r;
-	int	g;
-	int	b;
-
-	t = get_t(color);
-	r = 255 - get_r(color);
-	g = 255 - get_g(color);
-	b = 255 - get_b(color);
-	return (create_trgb(t, r, g, b));
-}
-
-int	ft_close(int keycode, t_vars *vars)
-{
-	(void)keycode;
-	mlx_destroy_window(vars->mlx, vars->win);
-	return (0);
-}
-
-int	mouse_enter_window(int x, int y, t_vars *vars)
-{
-	(void)x;
-	(void)y;
-	(void)vars;
-	ft_printf("Hello !\n");
-	return(0);
-}
-
-int	mouse_leave_window(int x, int y, t_vars *vars)
-{
-	(void)x;
-	(void)y;
-	(void)vars;
-	ft_printf("Bye !\n");
-	return(0);
-}
-
-int main()
-{
-	t_vars	vars;
-	t_data	img;
 	int	i;
-	int	j;
+	int	dot;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(vars.mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	//carre
-	i = 5;
-	while (i < 20)
+	i = 0;
+	dot = 0;
+	while (str[i])
 	{
-		j = 5;
-		while (j < 20)
+		if (!ft_isdigit(str[i]))
 		{
-			if ((i % 2) == 0)
-				my_mlx_pixel_put(&img, i, j, get_opposite(0x00FF0000));
-			if ((i % 2) == 1)
-				my_mlx_pixel_put(&img, i, j, 0x00FFFFFF);
-			j++;
+			if (str[i] == '-' && i != 0)
+				return (0);
+			if (str[i] == '.' && dot != 0)
+				return (0);
+			if (str[i] == '.')
+				dot = 1;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, ft_close, &vars);
-	mlx_hook(vars.win, 6, 1L<<4, mouse_enter_window, &vars);
-	mlx_hook(vars.win, 6, 1L<<5, mouse_leave_window, &vars);
-	mlx_loop(vars.mlx);
+	return (1);
+}
+
+int	check_args(int argc, char **argv)
+{
+	if (argc < 2)
+		return (0);
+	if (!ft_strncmp(argv[1], "Mandelbrot", ft_strlen(argv[1])) && argc == 2)
+		return (1);
+	if (!ft_strncmp(argv[1], "Julia", ft_strlen(argv[1])) && argc == 4)
+	{
+		if (!is_float(argv[2]) || !is_float(argv[3]))
+			return (0);
+		return (1);
+	}
 	return (0);
+}
+
+
+int	main(int argc, char **argv)
+{
+	int	error;
+
+	if (!check_args(argc, argv))
+	{
+		print_manual();
+		return (1);
+	}
+	error = start_fractol(argv);
+	if (error)
+		print_error(error);
+	return (error);
 }
