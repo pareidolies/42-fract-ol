@@ -3,6 +3,7 @@
 int	start_fractol(char **argv)
 {
 	t_mlx_data	mlx_data;
+	t_fractal_data	fractal_data;
 
 	mlx_data.mlx_ptr = mlx_init();
 	if (!mlx_data.mlx_ptr)
@@ -13,9 +14,12 @@ int	start_fractol(char **argv)
 		free(mlx_data.window_ptr);
 		return (MLX_ERROR);
 	}
+	//Draw fractal
+	initialize_info(&fractal_data, argv);
+	draw_fractal();
 	//Setup hooks
-	mlx_loop_hook();
-	mlx_hook();
+	mlx_key_hook();
+	mlx_mouse_hook();
 	mlx_loop();
 	//End
 	mlx_destroy_display(mlx_data.mlx_ptr);

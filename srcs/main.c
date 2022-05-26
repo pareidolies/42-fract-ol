@@ -53,6 +53,11 @@ int	check_args(int argc, char **argv)
 	return (0);
 }
 
+void	print_error(int error)
+{
+	if (error == 1)
+		ft_pustr_fd_color("Error.\n", 2, ANSI_COLOR_LIGHT_RED);
+}
 
 int	main(int argc, char **argv)
 {
