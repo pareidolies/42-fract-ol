@@ -15,7 +15,6 @@ int	start_fractol(char **argv)
 		return (MLX_ERROR);
 	}
 	//Draw fractal
-	initialize_info(&fractal_data, argv);
 	draw_fractal();
 	//Setup hooks
 	mlx_key_hook();
