@@ -12,40 +12,43 @@ int	get_color(int iterations, int shift)
 	color = 0;
 	if (iterations % 60 < 20)
 	{
-		color += (int)(255 - speed % 60 / 20.0 * 255) << 16;
-		color += (int)(speed % 60 / 20.0 * 255) << 8;
+		color += (int)(255 - iterations % 60 / 20.0 * 255) << 16;
+		color += (int)(iterations % 60 / 20.0 * 255) << 8;
 	}
 	else if (iterations % 60 < 40)
 	{
-		color += (int)(255 - (speed - 20) % 60 / 20.0 * 255) << 8;
-		color += (int)((speed - 20) % 60 / 20.0 * 255);
+		color += (int)(255 - (iterations - 20) % 60 / 20.0 * 255) << 8;
+		color += (int)((iterations - 20) % 60 / 20.0 * 255);
 	}
 	else
 	{
-		color += (int)(255 - (speed - 40) % 60 / 20.0 * 255);
-		color += (int)((speed - 40) % 60 / 20.0 * 255) << 16;
+		color += (int)(255 - (iterations - 40) % 60 / 20.0 * 255);
+		color += (int)((iterations - 40) % 60 / 20.0 * 255) << 16;
 	}
 	return (color);
 }
 
 void	transpose_to_image(void *image, t_fractal *fractal, t_data *data)
 {
-	int			junk;
-	int			*buffer;
-	t_complex	screen;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	int			*pixels;
+	int			x;
+	int			y;
+	int			index;
 
-	buffer = (int *)mlx_get_data_addr(image, &junk, &junk, &junk);
-	screen.y = 0;
-	while (screen.y < HEIGHT)
+	pixels = (int *)mlx_get_data_addr(image, &bits_per_pixel, &size_line, &endian);
+	y = 0;
+	while (y < HEIGHT)
 	{
-		screen.x = 0;
-		while (screen.x < WIDTH)
+		x = 0;
+		while (x < WIDTH)
 		{
-			buffer[(int)(screen.y * HEIGHT + screen.x)] = get_color(
-					fractal[(int)(screen.y * SIZE + screen.x)].iterations,
-					COLOR_SHIFT);
-			screen.x++;
+			index = (int)(y * HEIGHT + x);
+			pixels[index] = get_color(fractal[index].iterations, COLOR_SHIFT);
+			x++;
 		}
-		screen.y++;
+		y++;
 	}
 }
