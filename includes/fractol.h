@@ -4,6 +4,7 @@
 
 #include "../printf/includes/ft_printf.h"
 #include <mlx.h>
+#include <X11/keysym.h>
 #include "stdlib.h"
 
 # define WIDTH				400
@@ -21,6 +22,9 @@
 # define JULIA				2
 # define OTHER				3
 
+# define MAX_ITERATIONS		200
+# define COLOR_SHIFT		0.01
+
 # define MLX_ERROR			11
 
 # define ESC_KEY			65307
@@ -29,35 +33,33 @@
 # define UP_KEY				65362
 # define DOWN_KEY			65364
 # define SPACE_KEY			99
-# define ZOOM_IN_KEY			4
-# define ZOOM_OUT_KEY			5
+# define ZOOM_IN_KEY		4
+# define ZOOM_OUT_KEY		5
 
-typedef struct	s_data {
+/*typedef struct	s_data {
 	void	*img;
 	char	*addr;
 	int	bits_per_pixel;
 	int	line_length;
 	int	endian;
-}		t_data;
-
-typedef struct	s_mlx_data {
-	void	*mlx_ptr;
-	void	*window_ptr;
-}		t_mlx_data;
-
-typedef struct	s_fractal_data {
-	int		type;
-	t_complex	c;
-}		t_fractal_data	
+}		t_data;*/
 
 typedef struct	s_complex {
 	double	re;
 	double	im;
 }		t_complex;
 
-typedef struct	s_color {
+typedef struct	s_data {
+	void		*mlx_ptr;
+	void		*window_ptr;
+	int			type;
+	t_complex	c;
+	t_complex	*points;
+}		t_data;
+
+typedef struct	s_fractal {
 	t_complex	nbr;
-	int		color;
-}		t_color;
+	int			iterations;
+}		t_fractal;
 
 #endif

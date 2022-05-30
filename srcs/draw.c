@@ -1,23 +1,13 @@
 #include "../includes/fractol.h"
 
-void	initialize_info(t_fractal_data *fractal_data, char *argv)
+t_complex	*create_set(void)
 {
-	if (!ft_strncmp(argv[1], "Mandelbrot", ft_strlen(argv[1])))
-		data->type = MANDELBROT;
-	else if (!ft_strncmp(argv[1], "Julia", ft_strlen(argv[1])))
-		data->type = JULIA;
-	else
-		data-type = OTHER;
-	//MIN MAX COLOR_SHIFT
-}
-
-t_complex	*create_frame(void)
-{
-	t_complex	point[WIDTH * HEIGHT];
+	t_complex	*points;
 	t_complex	tmp;
 	int		x;
 	int		y;
 
+	points = malloc(sizeof(*points) * WIDTH * HEIGHT);
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -26,24 +16,24 @@ t_complex	*create_frame(void)
 		while (x < WIDTH)
 		{
 			tmp.re = (4 * x / WIDTH) - 2;
-			point[y * HEIGHT + x] = tmp;
+			points[y * HEIGHT + x] = tmp;
 			x++;
 		}
 		y++;
 	}
-	return (point);
+	return (points);
 }
 
-void	draw_fractal(t_mlx_data *mlx_data, t_fractal_data *fractal_data)
+void	draw_fractal(t_data *data)
 {
 	void		*image;
-	t_complex	point[WIDTH * HEIGHT];
-	t_color		*result;
+	t_complex	points[WIDTH * HEIGHT];
+	t_fractal	*fractal;
 
-	points = create_frame();
-	result = compute_fractal();
-	image = mlx_new_image(mlx_data->mlx_ptr, WIDTH, HEIGHT);
-	transpose_to_image();
-	mlx_put_image_to_window(mlx_data->mlx_ptr, mlx_data->window_ptr, image, 0, 0);
+	data->points = create_set(void);
+	fractal = compute_fractal(&data, &fractal);
+	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	transpose_to_image(&image, fractal, &data);
+	mlx_put_image_to_window(data->mlx_ptr, data->window_ptr, image, 0, 0);
 	//clean
 }

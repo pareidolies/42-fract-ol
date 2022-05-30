@@ -2,20 +2,20 @@
 
 //check
 
-int	get_color(int speed, int shift)
+int	get_color(int iterations, int shift)
 {
 	int	color;
 
-	if (speed == -1)
+	if (iterations == MAX_ITERATIONS)
 		return (0xFF000000);
-	speed += shift;
+	iterations += shift;
 	color = 0;
-	if (speed % 60 < 20)
+	if (iterations % 60 < 20)
 	{
 		color += (int)(255 - speed % 60 / 20.0 * 255) << 16;
 		color += (int)(speed % 60 / 20.0 * 255) << 8;
 	}
-	else if (speed % 60 < 40)
+	else if (iterations % 60 < 40)
 	{
 		color += (int)(255 - (speed - 20) % 60 / 20.0 * 255) << 8;
 		color += (int)((speed - 20) % 60 / 20.0 * 255);
@@ -28,7 +28,7 @@ int	get_color(int speed, int shift)
 	return (color);
 }
 
-void	fill_image(void *image, t_color *color, t_fractal_data *fractal_data)
+void	transpose_to_image(void *image, t_fractal *fractal, t_data *data)
 {
 	int			junk;
 	int			*buffer;
@@ -36,14 +36,14 @@ void	fill_image(void *image, t_color *color, t_fractal_data *fractal_data)
 
 	buffer = (int *)mlx_get_data_addr(image, &junk, &junk, &junk);
 	screen.y = 0;
-	while (screen.y < SIZE)
+	while (screen.y < HEIGHT)
 	{
 		screen.x = 0;
-		while (screen.x < SIZE)
+		while (screen.x < WIDTH)
 		{
-			buffer[(int)(screen.y * SIZE + screen.x)] = get_color(
-					color[(int)(screen.y * SIZE + screen.x)].color,
-					fractal_data->color_shift);
+			buffer[(int)(screen.y * HEIGHT + screen.x)] = get_color(
+					fractal[(int)(screen.y * SIZE + screen.x)].iterations,
+					COLOR_SHIFT);
 			screen.x++;
 		}
 		screen.y++;

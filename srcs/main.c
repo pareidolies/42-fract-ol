@@ -9,10 +9,10 @@ void	ft_putstr_fd_color(char *str, int fd, char *color)
 
 void	print_manual(void)
 {
-	ft_pustr_fd_color("----- MANUAL -----\n", 2, ANSI_COLOR_BLUE);
-	ft_pustr_fd_color("1. ./fractol Mandelbrot\n", 2, ANSI_COLOR_BLUE);
-	ft_pustr_fd_color("2. ./fractol Julia Re(C) Im(C)\n", 2, ANSI_COLOR_BLUE);
-	ft_pustr_fd_color("------------------", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("\n--------------- MANUAL ---------------\n\n", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("Case 1 : ./fractol Mandelbrot\n", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("Case 2 : ./fractol Julia Re(C) Im(C)\n\n", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("--------------------------------------\n\n", 2, ANSI_COLOR_BLUE);
 }
 
 int	is_float(char *str)
@@ -26,6 +26,8 @@ int	is_float(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 		{
+			if (str[i] != '-' && str[i] != '.')
+				return (0);
 			if (str[i] == '-' && i != 0)
 				return (0);
 			if (str[i] == '.' && dot != 0)
@@ -56,20 +58,21 @@ int	check_args(int argc, char **argv)
 void	print_error(int error)
 {
 	if (error == 1)
-		ft_pustr_fd_color("Error.\n", 2, ANSI_COLOR_LIGHT_RED);
+		ft_putstr_fd_color("Error.\n", 2, ANSI_COLOR_LIGHT_RED);
 }
 
 int	main(int argc, char **argv)
 {
 	int	error;
 
+	error = 0;
 	if (!check_args(argc, argv))
 	{
 		print_manual();
 		return (1);
 	}
-	error = start_fractol(argv);
+	/*error = start_fractol(argv);
 	if (error)
-		print_error(error);
+		print_error(error);*/
 	return (error);
 }
