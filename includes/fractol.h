@@ -3,9 +3,12 @@
 #define FRACTOL_H
 
 #include "../printf/includes/ft_printf.h"
+#include "../libft/libft.h"
 #include <mlx.h>
 #include <X11/keysym.h>
 #include "stdlib.h"
+#include <stdio.h>
+#include <math.h>
 
 # define WIDTH				400
 # define HEIGHT				400
@@ -61,5 +64,19 @@ typedef struct	s_fractal {
 	t_complex	nbr;
 	int			iterations;
 }		t_fractal;
+
+//main.c
+void	print_error(int error);
+int	check_args(int argc, char **argv);
+int	is_float(char *str);
+void	print_manual(void);
+void	ft_putstr_fd_color(char *str, int fd, char *color);
+
+//start.c
+int	start_fractol(char **argv);
+void	initialize_info(t_data *data, char **argv);
+
+//parse.c
+double	parse_double(char *str);
 
 #endif

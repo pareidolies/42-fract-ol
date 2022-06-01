@@ -19,21 +19,35 @@ int	is_float(char *str)
 {
 	int	i;
 	int	dot;
+	int	integer_part;
 
 	i = 0;
 	dot = 0;
+	integer_part = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (ft_isdigit(str[i]))
+		{
+			integer_part = 1;
+		}
+		else
 		{
 			if (str[i] != '-' && str[i] != '.')
+			{
 				return (0);
+			}
 			if (str[i] == '-' && i != 0)
+			{
 				return (0);
-			if (str[i] == '.' && dot != 0)
+			}
+			if (str[i] == '.' && (dot != 0 || integer_part == 0))
+			{
 				return (0);
+			}
 			if (str[i] == '.')
+			{
 				dot = 1;
+			}
 		}
 		i++;
 	}
@@ -71,8 +85,8 @@ int	main(int argc, char **argv)
 		print_manual();
 		return (1);
 	}
-	/*error = start_fractol(argv);
+	error = start_fractol(argv);
 	if (error)
-		print_error(error);*/
+		print_error(error);
 	return (error);
 }

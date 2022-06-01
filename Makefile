@@ -1,4 +1,4 @@
-SRCS		= main.c
+SRCS		= main.c start.c parse.c
 
 SRCS_DIR	= ./srcs/
 
