@@ -41,8 +41,8 @@ int	start_fractol(char **argv)
 	//while(1)
 	mlx_loop(data.mlx_ptr);
 	//End
-	mlx_destroy_window(data.mlx_ptr, data.window_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	//mlx_destroy_window(data.mlx_ptr, data.window_ptr);
+	//mlx_destroy_display(data.mlx_ptr);
+	//free(data.mlx_ptr);
 	return (0);
 }

@@ -32,9 +32,9 @@ int	get_color(int iterations, double shift)
 {
 	(void)shift;
 	if (iterations == MAX_ITERATIONS)
-		return (0xFF000000);
+		return ((int)0xFF000000);
 	else
-		return (0x00000000);
+		return ((int)0x00000000);
 }
 
 void	transpose_to_image(void *image, t_data *data)
