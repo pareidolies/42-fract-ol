@@ -15,7 +15,7 @@ void	initialize_info(t_data *data, char **argv)
 	else
 		data->type = OTHER;
 	printf("%d\n", data->type);
-	//MIN MAX COLOR_SHIFT + PARSE
+	//MIN MAX COLOR_SHIFT
 }
 
 int	start_fractol(char **argv)
@@ -36,8 +36,8 @@ int	start_fractol(char **argv)
 	//Draw fractal (loop hook)
 	draw_fractal(&data);
 	//Setup hooks
-	//mlx_key_hook(data.window_ptr, &FUNCTION, &data);
-	//mlx_mouse_hook(data.window_ptr, &FUNCTION, &data);
+	//mlx_key_hook(data.window_ptr, FUNCTION, data);
+	//mlx_mouse_hook(data.window_ptr, FUNCTION, data);
 	//while(1)
 	mlx_loop(data.mlx_ptr);
 	//End
