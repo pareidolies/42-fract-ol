@@ -2,7 +2,7 @@
 
 //check
 
-int	get_color(int iterations, int shift)
+/*int	get_color(int iterations, int shift)
 {
 	int	color;
 
@@ -26,9 +26,18 @@ int	get_color(int iterations, int shift)
 		color += (int)((iterations - 40) % 60 / 20.0 * 255) << 16;
 	}
 	return (color);
+}*/
+
+int	get_color(int iterations, double shift)
+{
+	(void)shift;
+	if (iterations == MAX_ITERATIONS)
+		return (0xFF000000);
+	else
+		return (0x00000000);
 }
 
-void	transpose_to_image(void *image, t_fractal *fractal, t_data *data)
+void	transpose_to_image(void *image, t_data *data)
 {
 	int			bits_per_pixel;
 	int			size_line;
@@ -46,7 +55,7 @@ void	transpose_to_image(void *image, t_fractal *fractal, t_data *data)
 		while (x < WIDTH)
 		{
 			index = (int)(y * HEIGHT + x);
-			pixels[index] = get_color(fractal[index].iterations, COLOR_SHIFT);
+			pixels[index] = get_color(data->fractal[index].iterations, COLOR_SHIFT);
 			x++;
 		}
 		y++;

@@ -1,13 +1,15 @@
 #include "../includes/fractol.h"
 
-t_complex	*create_set(void)
+void	create_set(t_data *data)
 {
-	t_complex	*points;
 	t_complex	tmp;
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 
-	points = malloc(sizeof(*points) * WIDTH * HEIGHT);
+	data->points = malloc(sizeof(t_complex) * WIDTH * HEIGHT);
+	//MALLOC_ERROR
+	if (!data->points)
+		return;
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -16,24 +18,50 @@ t_complex	*create_set(void)
 		while (x < WIDTH)
 		{
 			tmp.re = (4 * x / WIDTH) - 2;
-			points[y * HEIGHT + x] = tmp;
+			data->points[(int)(y * HEIGHT + x)] = tmp;
 			x++;
 		}
 		y++;
 	}
-	return (points);
+}
+
+void	print_set(t_data *data)
+{
+	int	i;
+
+	i = 1030;
+	while (i < 1090)
+	{
+		printf("%f\n", data->points[i].re);
+		printf("%f\n\n", data->points[i].im);
+		i++;
+	}
+}
+
+void	print_fractal(t_data *data)
+{
+	int	i;
+
+	i = 80000;
+	while (i < 80100)
+	{
+		printf("%f\n", data->fractal[i].nbr.re);
+		printf("%f\n", data->fractal[i].nbr.im);
+		printf("%d\n\n", data->fractal[i].iterations);
+		i++;
+	}
 }
 
 void	draw_fractal(t_data *data)
 {
 	void		*image;
-	t_complex	points[WIDTH * HEIGHT];
-	t_fractal	*fractal;
-
-	data->points = create_set(void);
-	fractal = compute_fractal(&data, &fractal);
+	
+	create_set(data);
+	//print_set(data);
+	compute_fractal(data);
+	//print_fractal(data);
 	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	transpose_to_image(&image, fractal, &data);
+	transpose_to_image(&image, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->window_ptr, image, 0, 0);
 	//clean
 }

@@ -25,7 +25,7 @@
 # define JULIA				2
 # define OTHER				3
 
-# define MAX_ITERATIONS		200
+# define MAX_ITERATIONS		80
 # define COLOR_SHIFT		0.01
 
 # define MLX_ERROR			11
@@ -52,18 +52,19 @@ typedef struct	s_complex {
 	double	im;
 }		t_complex;
 
+typedef struct	s_fractal {
+	t_complex	nbr;
+	int			iterations;
+}		t_fractal;
+
 typedef struct	s_data {
 	void		*mlx_ptr;
 	void		*window_ptr;
 	int			type;
 	t_complex	c;
 	t_complex	*points;
+	t_fractal	*fractal;
 }		t_data;
-
-typedef struct	s_fractal {
-	t_complex	nbr;
-	int			iterations;
-}		t_fractal;
 
 //main.c
 void	print_error(int error);
@@ -78,5 +79,19 @@ void	initialize_info(t_data *data, char **argv);
 
 //parse.c
 double	parse_double(char *str);
+
+//draw.c
+void	draw_fractal(t_data *data);
+
+//compute.c
+void	compute_fractal(t_data *data);
+
+//maths.c
+unsigned int	distance(t_complex z);
+t_complex	square(t_complex z);
+t_complex	sum(t_complex z1, t_complex z2);
+
+//transpose.c
+void	transpose_to_image(void *image, t_data *data);
 
 #endif

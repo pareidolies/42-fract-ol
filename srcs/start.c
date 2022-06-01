@@ -34,15 +34,15 @@ int	start_fractol(char **argv)
 	//Initialize
 	initialize_info(&data, argv);
 	//Draw fractal (loop hook)
-	//draw_fractal(&data);
+	draw_fractal(&data);
 	//Setup hooks
 	//mlx_key_hook(data.window_ptr, &FUNCTION, &data);
 	//mlx_mouse_hook(data.window_ptr, &FUNCTION, &data);
 	//while(1)
-	//mlx_loop(data.mlx_ptr);
+	mlx_loop(data.mlx_ptr);
 	//End
-	//mlx_destroy_window(data.mlx_ptr, data.window_ptr)
-	//mlx_destroy_display(data.mlx_ptr);
-	//free(data.mlx_ptr);
+	mlx_destroy_window(data.mlx_ptr, data.window_ptr);
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
 	return (0);
 }
