@@ -28,13 +28,51 @@
 	return (color);
 }*/
 
+int lighten_or_darken(int color, int percent)
+{
+	int r;
+	int g;
+	int	b;
+	
+	r = ((color >> 16) & 0xFF) + percent;
+	g = ((color >> 8) & 0xFF) + percent;
+	b = (color & 0xFF) + percent;
+	return (r << 16 | g << 8 | b);
+}
+
 int	get_color(int iterations, double shift)
 {
+	int	color;
 	(void)shift;
-	if (iterations == MAX_ITERATIONS)
-		return ((int)0xFF000000);
+	
+	color = (int)0x00800080;
+	return (lighten_or_darken(color, iterations * 100));
+	/*if (iterations == MAX_ITERATIONS)
+		return ((int)0x00FF0000);
 	else
 		return ((int)0x00000000);
+	if (iterations == MAX_ITERATIONS)
+		return ((int)0x00000058);
+	else if (iterations >= 45 && iterations < 50)
+		return (lighten_or_darken(color, 10));
+	else if (iterations >= 40 && iterations < 45)
+		return (lighten_or_darken(color, 20));
+	else if (iterations >= 35 && iterations < 40)
+		return (lighten_or_darken(color, 30));
+	else if (iterations >= 30 && iterations < 35)
+		return (lighten_or_darken(color, 40));
+	else if (iterations >= 25 && iterations < 30)
+		return (lighten_or_darken(color, 50));
+	else if (iterations >= 20 && iterations < 25)
+		return (lighten_or_darken(color, 60));
+	else if (iterations >= 15 && iterations < 20)
+		return (lighten_or_darken(color, 70));
+	else if (iterations >= 10 && iterations < 15)
+		return (lighten_or_darken(color, 80));
+	else if (iterations >= 5 && iterations < 10)
+		return (lighten_or_darken(color, 100));
+	else
+		return ((int)0x00000000);*/
 }
 
 void	transpose_to_image(void *image, t_data *data)

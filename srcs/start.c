@@ -13,7 +13,7 @@ void	initialize_info(t_data *data, char **argv)
 		printf("%f\n", data->c.im);
 	}
 	else
-		data->type = OTHER;
+		data->type = SIERPINSKI;
 	printf("%d\n", data->type);
 	//MIN MAX COLOR_SHIFT
 }

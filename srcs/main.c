@@ -11,7 +11,8 @@ void	print_manual(void)
 {
 	ft_putstr_fd_color("\n--------------- MANUAL ---------------\n\n", 2, ANSI_COLOR_BLUE);
 	ft_putstr_fd_color("Case 1 : ./fractol Mandelbrot\n", 2, ANSI_COLOR_BLUE);
-	ft_putstr_fd_color("Case 2 : ./fractol Julia Re(C) Im(C)\n\n", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("Case 2 : ./fractol Julia Re(C) Im(C)\n", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("Case 3 : ./fractol Sierpinski\n\n", 2, ANSI_COLOR_BLUE);
 	ft_putstr_fd_color("--------------------------------------\n\n", 2, ANSI_COLOR_BLUE);
 }
 
@@ -66,6 +67,8 @@ int	check_args(int argc, char **argv)
 			return (0);
 		return (1);
 	}
+	if (!ft_strncmp(argv[1], "Sierpinski", ft_strlen(argv[1])) && argc == 2)
+		return (1);
 	return (0);
 }
 

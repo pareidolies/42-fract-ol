@@ -25,7 +25,7 @@ void	create_set(t_data *data)
 	}
 }
 
-void	print_set(t_data *data)
+/*void	print_set(t_data *data)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ void	print_fractal(t_data *data)
 		printf("%d\n\n", data->fractal[i].iterations);
 		i++;
 	}
-}
+}*/
 
 void	draw_fractal(t_data *data)
 {
@@ -58,7 +58,12 @@ void	draw_fractal(t_data *data)
 	
 	create_set(data);
 	//print_set(data);
-	compute_fractal(data);
+	if (data->type == MANDELBROT || data->type == JULIA)
+	{
+		compute_fractal(data);
+	}
+	else
+		compute_sierpinski(data);
 	//print_fractal(data);
 	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	transpose_to_image(image, data);

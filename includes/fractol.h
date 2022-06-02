@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <math.h>
 
-# define WIDTH				400
-# define HEIGHT				400
+# define WIDTH				900
+# define HEIGHT				900
 # define TITLE				"fractol"
 
 # define ANSI_COLOR_BLUE		"\x1b[94m"
@@ -23,7 +23,7 @@
 
 # define MANDELBROT			1
 # define JULIA				2
-# define OTHER				3
+# define SIERPINSKI				3
 
 # define MAX_ITERATIONS		80
 # define COLOR_SHIFT		0.01
@@ -85,6 +85,7 @@ void	draw_fractal(t_data *data);
 
 //compute.c
 void	compute_fractal(t_data *data);
+void	compute_sierpinski(t_data *data);
 
 //maths.c
 unsigned int	distance(t_complex z);
