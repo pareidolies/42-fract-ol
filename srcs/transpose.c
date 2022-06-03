@@ -28,6 +28,21 @@
 	return (color);
 }*/
 
+/*JRALEMAN
+fractol->image.data[pos] = fractol->color.red + (depth * 2.42);
+		fractol->image.data[pos + 1] = fractol->color.green + (depth * 2.42);
+		fractol->image.data[pos + 2] = fractol->color.blue + (depth * 2.42);*/
+
+/*fractol->color.red = 0x42;
+	fractol->color.green = 0x32;
+	fractol->color.blue = 0x22;*/
+
+/*fractol->image.data[pos] = fractol->color.red + (depth * 2.42);
+		fractol->image.data[pos + 1] = fractol->color.green + (depth * 2.42);
+		fractol->image.data[pos + 2] = fractol->color.blue + (depth * 2.42);*/
+
+/*MAX = 42*/
+
 int lighten_or_darken(int color, int percent)
 {
 	int r;
