@@ -14,8 +14,11 @@ void	initialize_info(t_data *data, char **argv)
 	}
 	else
 		data->type = SIERPINSKI;
-	printf("%d\n", data->type);
-	//MIN MAX COLOR_SHIFT
+	data->min.x = -2;
+	data->max.x = 2;
+	data->min.y = -2;
+	data->max.y = 2;
+	data->color_shift = 0;
 }
 
 int	start_fractol(char **argv)
@@ -36,8 +39,8 @@ int	start_fractol(char **argv)
 	//Draw fractal (loop hook)
 	draw_fractal(&data);
 	//Setup hooks
-	//mlx_key_hook(data.window_ptr, FUNCTION, data);
-	//mlx_mouse_hook(data.window_ptr, FUNCTION, data);
+	mlx_key_hook(data.window_ptr, key_hook, &data);
+	mlx_mouse_hook(data.window_ptr, mouse_hook, &data);
 	//while(1)
 	mlx_loop(data.mlx_ptr);
 	//End

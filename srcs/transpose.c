@@ -55,13 +55,21 @@ int lighten_or_darken(int color, int percent)
 	return (r << 16 | g << 8 | b);
 }
 
-int	get_color(int iterations, double shift)
+int	get_color(int iterations, t_data *data)
 {
-	int	color;
-	(void)shift;
+	t_color color;
+	int		result;
 	
-	color = (int)0x00800080;
-	return (lighten_or_darken(color, iterations * 100));
+	if (iterations == MAX_ITERATIONS)
+		return ((int)0x00A3D4CB);
+	color.red = 0xD0 + (iterations  * 2.42);
+	color.green = 0xC5 + (iterations * 2.42);
+	color.blue = 0xB0 + (iterations * 2.42);
+	result = color.red << 16 | color.green << 8 | color.blue;
+		return (lighten_or_darken(result, data->color_shift));
+
+	/*color = (int)0x00800080;
+	return (lighten_or_darken(color, iterations * 100));*/
 	/*if (iterations == MAX_ITERATIONS)
 		return ((int)0x00FF0000);
 	else
@@ -108,7 +116,7 @@ void	transpose_to_image(void *image, t_data *data)
 		while (x < WIDTH)
 		{
 			index = (int)(y * HEIGHT + x);
-			pixels[index] = get_color(data->fractal[index].iterations, COLOR_SHIFT);
+			pixels[index] = get_color(data->fractal[index].iterations, data);
 			x++;
 		}
 		y++;

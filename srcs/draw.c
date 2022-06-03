@@ -14,10 +14,10 @@ void	create_set(t_data *data)
 	while (y < HEIGHT)
 	{
 		x = 0;
-		tmp.im = (4 * y / HEIGHT) - 2;
+		tmp.im = ((data->max.y - data->min.y) * y / HEIGHT) + data->min.y;
 		while (x < WIDTH)
 		{
-			tmp.re = (4 * x / WIDTH) - 2;
+			tmp.re = ((data->max.x - data->min.x) * x / WIDTH) + data->min.x;
 			data->points[(int)(y * HEIGHT + x)] = tmp;
 			x++;
 		}

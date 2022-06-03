@@ -1,4 +1,4 @@
-SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c
+SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c
 
 SRCS_DIR	= ./srcs/
 

@@ -23,10 +23,9 @@
 
 # define MANDELBROT			1
 # define JULIA				2
-# define SIERPINSKI				3
+# define SIERPINSKI			3
 
-# define MAX_ITERATIONS		80
-# define COLOR_SHIFT		0.01
+# define MAX_ITERATIONS		22
 
 # define MLX_ERROR			11
 
@@ -35,7 +34,7 @@
 # define RIGHT_KEY			65363
 # define UP_KEY				65362
 # define DOWN_KEY			65364
-# define SPACE_KEY			99
+# define C_KEY			99
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
@@ -57,13 +56,27 @@ typedef struct	s_fractal {
 	int			iterations;
 }		t_fractal;
 
+typedef struct	s_color {
+	int	red;
+	int	green;
+	int	blue;
+}		t_color;
+
+typedef struct s_coordinates {
+	int	x;
+	int	y;
+}		t_coordinates;
+
 typedef struct	s_data {
-	void		*mlx_ptr;
-	void		*window_ptr;
-	int			type;
-	t_complex	c;
-	t_complex	*points;
-	t_fractal	*fractal;
+	void			*mlx_ptr;
+	void			*window_ptr;
+	int				type;
+	t_coordinates	max;
+	t_coordinates	min;
+	double			color_shift;
+	t_complex		c;
+	t_complex		*points;
+	t_fractal		*fractal;
 }		t_data;
 
 //main.c
@@ -94,5 +107,9 @@ t_complex	sum(t_complex z1, t_complex z2);
 
 //transpose.c
 void	transpose_to_image(void *image, t_data *data);
+
+//hook.c
+int	key_hook(int keycode, t_data *data);
+int	mouse_hook(int button, int xx, int yy, t_data *data);
 
 #endif
