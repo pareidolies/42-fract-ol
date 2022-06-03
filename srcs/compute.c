@@ -63,16 +63,18 @@ void	initialize_sierpinski(t_data *data)
 
 void	fill_rectangle(double x, double y, double a, double b, int n, t_data *data)
 {
-	double	i;
-	double	j;
+	int	i;
+	int	j;
+	int	index;
 
-	j = y;
-	while (j < b)
+	j = (int)y;
+	while (j <= b)
 	{
-		i = x;
-		while (i < a)
+		i = (int)x;
+		while (i <= a)
 		{
-			data->fractal[(int)(j * HEIGHT + i)].iterations = n;
+			index = i * WIDTH + j;
+			data->fractal[(int)index].iterations = n;
 			i++;
 		}
 		j++;
@@ -85,18 +87,18 @@ void	fill_sierpinski(double x, double y, double a, double b, int n, t_data *data
 	{
 		fill_rectangle(x + a / 3, y + b / 3, x + 2 * a / 3, y + 2 * b / 3, n, data);
 		fill_sierpinski(x, y, a / 3, b / 3, n - 1, data);
-		/*fill_sierpinski(x+a/3, y, a/3, b/3, n-1, data);
+		fill_sierpinski(x+a/3, y, a/3, b/3, n-1, data);
 		fill_sierpinski(x+2*a/3, y, a/3, b/3, n-1, data);
 		fill_sierpinski(x, y+b/3, a/3, b/3, n-1, data);
 		fill_sierpinski(x+2*a/3, y+b/3, a/3, b/3, n-1, data);
 		fill_sierpinski(x, y+2*b/3, a/3, b/3, n-1, data);
 		fill_sierpinski(x+a/3, y+2*b/3, a/3, b/3, n-1, data);
-		fill_sierpinski(x+2*a/3, y+2*b/3, a/3, b/3, n-1, data);*/
+		fill_sierpinski(x+2*a/3, y+2*b/3, a/3, b/3, n-1, data);
 	}
 }
 
 void	compute_sierpinski(t_data *data)
 {
 	initialize_sierpinski(data);
-	fill_sierpinski(0.0000, 0.0000, 900.0000,  900.0000, 9, data);
+	fill_sierpinski(0.0000, 0.0000, 1000.0000,  1000.0000, 9, data);
 }

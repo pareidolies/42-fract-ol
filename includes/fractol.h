@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <math.h>
 
-# define WIDTH				900
-# define HEIGHT				900
+# define WIDTH				1000
+# define HEIGHT				1000
 # define TITLE				"fractol"
 
 # define ANSI_COLOR_BLUE		"\x1b[94m"
