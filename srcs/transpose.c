@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   transpose.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/03 17:43:58 by smostefa          #+#    #+#             */
+/*   Updated: 2022/06/03 17:43:59 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
 //check
@@ -43,12 +55,12 @@ fractol->image.data[pos] = fractol->color.red + (depth * 2.42);
 
 /*MAX = 42*/
 
-int lighten_or_darken(int color, int percent)
+int	lighten_or_darken(int color, int percent)
 {
-	int r;
-	int g;
+	int	r;
+	int	g;
 	int	b;
-	
+
 	r = ((color >> 16) & 0xFF) + percent;
 	g = ((color >> 8) & 0xFF) + percent;
 	b = (color & 0xFF) + percent;
@@ -57,17 +69,16 @@ int lighten_or_darken(int color, int percent)
 
 int	get_color(int iterations, t_data *data)
 {
-	t_color color;
+	t_color	color;
 	int		result;
-	
+
 	if (iterations == MAX_ITERATIONS)
 		return ((int)0x00A3D4CB);
-	color.red = 0xD0 + (iterations  * 2.42);
+	color.red = 0xD0 + (iterations * 2.42);
 	color.green = 0xC5 + (iterations * 2.42);
 	color.blue = 0xB0 + (iterations * 2.42);
 	result = color.red << 16 | color.green << 8 | color.blue;
-		return (lighten_or_darken(result, data->color_shift));
-
+	return (lighten_or_darken(result, data->color_shift));
 	/*color = (int)0x00800080;
 	return (lighten_or_darken(color, iterations * 100));*/
 	/*if (iterations == MAX_ITERATIONS)

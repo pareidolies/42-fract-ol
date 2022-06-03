@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   compute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/03 17:42:49 by smostefa          #+#    #+#             */
+/*   Updated: 2022/06/03 17:42:51 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
 int	calculate_iterations(t_complex z0, t_complex c)
 {
 	t_complex	zn;
-	int		n;
+	int			n;
 
 	n = 0;
 	zn = z0;
@@ -11,7 +23,7 @@ int	calculate_iterations(t_complex z0, t_complex c)
 	{
 		zn = sum(square(zn), c);
 		if (distance(zn) > 2)
-			break;
+			break ;
 		n++;
 	}
 	return (n);
@@ -26,7 +38,7 @@ void	compute_fractal(t_data *data)
 	data->fractal = malloc(sizeof(t_fractal) * WIDTH * HEIGHT);
 	//MALLOC_ERROR
 	if (!data->fractal)
-		return;
+		return ;
 	i = 0;
 	z0.re = 0;
 	z0.im = 0;
@@ -50,7 +62,7 @@ void	initialize_sierpinski(t_data *data)
 	data->fractal = malloc(sizeof(t_fractal) * WIDTH * HEIGHT);
 	//MALLOC_ERROR
 	if (!data->fractal)
-		return;
+		return ;
 	i = 0;
 	while (i < WIDTH * HEIGHT)
 	{
@@ -87,18 +99,18 @@ void	fill_sierpinski(double x, double y, double a, double b, int n, t_data *data
 	{
 		fill_rectangle(x + a / 3, y + b / 3, x + 2 * a / 3, y + 2 * b / 3, n, data);
 		fill_sierpinski(x, y, a / 3, b / 3, n - 1, data);
-		fill_sierpinski(x+a/3, y, a/3, b/3, n-1, data);
-		fill_sierpinski(x+2*a/3, y, a/3, b/3, n-1, data);
-		fill_sierpinski(x, y+b/3, a/3, b/3, n-1, data);
-		fill_sierpinski(x+2*a/3, y+b/3, a/3, b/3, n-1, data);
-		fill_sierpinski(x, y+2*b/3, a/3, b/3, n-1, data);
-		fill_sierpinski(x+a/3, y+2*b/3, a/3, b/3, n-1, data);
-		fill_sierpinski(x+2*a/3, y+2*b/3, a/3, b/3, n-1, data);
+		fill_sierpinski(x + a / 3, y, a / 3, b / 3, n - 1, data);
+		fill_sierpinski(x + 2 * a / 3, y, a / 3, b / 3, n - 1, data);
+		fill_sierpinski(x, y + b / 3, a / 3, b / 3, n - 1, data);
+		fill_sierpinski(x + 2 * a / 3, y + b / 3, a / 3, b / 3, n - 1, data);
+		fill_sierpinski(x, y + 2 * b / 3, a / 3, b / 3, n - 1, data);
+		fill_sierpinski(x + a / 3, y + 2 * b / 3, a / 3, b / 3, n - 1, data);
+		fill_sierpinski(x + 2 * a / 3, y + 2 * b / 3, a / 3, b / 3, n - 1, data);
 	}
 }
 
 void	compute_sierpinski(t_data *data)
 {
 	initialize_sierpinski(data);
-	fill_sierpinski(0.0000, 0.0000, 1000.0000,  1000.0000, 9, data);
+	fill_sierpinski(0.0000, 0.0000, 1000.0000, 1000.0000, 9, data);
 }

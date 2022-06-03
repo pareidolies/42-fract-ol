@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/03 17:43:25 by smostefa          #+#    #+#             */
+/*   Updated: 2022/06/03 17:43:27 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
 void	create_set(t_data *data)
@@ -9,7 +21,7 @@ void	create_set(t_data *data)
 	data->points = malloc(sizeof(t_complex) * WIDTH * HEIGHT);
 	//MALLOC_ERROR
 	if (!data->points)
-		return;
+		return ;
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -55,7 +67,7 @@ void	print_fractal(t_data *data)
 void	draw_fractal(t_data *data)
 {
 	void		*image;
-	
+
 	create_set(data);
 	//print_set(data);
 	if (data->type == MANDELBROT || data->type == JULIA)

@@ -19,7 +19,12 @@
 # define ANSI_COLOR_LIGHT_RED		"\x1b[91m"
 # define ANSI_COLOR_RESET		"\x1b[0m"
 
-# define MANUAL1			"key functioning"
+# define M1			"\n--------------- MANUAL ---------------\n\n"
+# define M2			"Case 1 : ./fractol Mandelbrot\n"
+# define M3			"Case 2 : ./fractol Julia Re(C) Im(C)\n"
+# define M4			"Case 3 : ./fractol Sierpinski\n\n"
+# define M5			"--------------------------------------\n\n"
+
 
 # define MANDELBROT			1
 # define JULIA				2

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/03 17:43:07 by smostefa          #+#    #+#             */
+/*   Updated: 2022/06/03 17:43:09 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
 void	ft_putstr_fd_color(char *str, int fd, char *color)
@@ -9,11 +21,11 @@ void	ft_putstr_fd_color(char *str, int fd, char *color)
 
 void	print_manual(void)
 {
-	ft_putstr_fd_color("\n--------------- MANUAL ---------------\n\n", 2, ANSI_COLOR_BLUE);
-	ft_putstr_fd_color("Case 1 : ./fractol Mandelbrot\n", 2, ANSI_COLOR_BLUE);
-	ft_putstr_fd_color("Case 2 : ./fractol Julia Re(C) Im(C)\n", 2, ANSI_COLOR_BLUE);
-	ft_putstr_fd_color("Case 3 : ./fractol Sierpinski\n\n", 2, ANSI_COLOR_BLUE);
-	ft_putstr_fd_color("--------------------------------------\n\n", 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(M1, 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(M2, 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(M3, 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(M4, 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(M5, 2, ANSI_COLOR_BLUE);
 }
 
 int	is_float(char *str)
@@ -28,27 +40,17 @@ int	is_float(char *str)
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]))
-		{
 			integer_part = 1;
-		}
 		else
 		{
 			if (str[i] != '-' && str[i] != '.')
-			{
 				return (0);
-			}
 			if (str[i] == '-' && i != 0)
-			{
 				return (0);
-			}
 			if (str[i] == '.' && (dot != 0 || integer_part == 0))
-			{
 				return (0);
-			}
 			if (str[i] == '.')
-			{
 				dot = 1;
-			}
 		}
 		i++;
 	}
@@ -57,17 +59,20 @@ int	is_float(char *str)
 
 int	check_args(int argc, char **argv)
 {
+	int	len;
+
 	if (argc < 2)
 		return (0);
-	if (!ft_strncmp(argv[1], "Mandelbrot", ft_strlen(argv[1])) && argc == 2)
+	len = ft_strlen(argv[1]);
+	if (!ft_strncmp(argv[1], "Mandelbrot", len) && argc == 2)
 		return (1);
-	if (!ft_strncmp(argv[1], "Julia", ft_strlen(argv[1])) && argc == 4)
+	if (!ft_strncmp(argv[1], "Julia", len) && argc == 4)
 	{
 		if (!is_float(argv[2]) || !is_float(argv[3]))
 			return (0);
 		return (1);
 	}
-	if (!ft_strncmp(argv[1], "Sierpinski", ft_strlen(argv[1])) && argc == 2)
+	if (!ft_strncmp(argv[1], "Sierpinski", len) && argc == 2)
 		return (1);
 	return (0);
 }
