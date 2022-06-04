@@ -6,7 +6,7 @@
 #include "../libs/libft/libft.h"
 #include "../libs/minilibx-linux/mlx.h"
 #include <X11/keysym.h>
-#include "stdlib.h"
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
@@ -68,8 +68,8 @@ typedef struct	s_color {
 }		t_color;
 
 typedef struct s_coordinates {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }		t_coordinates;
 
 typedef struct	s_data {
