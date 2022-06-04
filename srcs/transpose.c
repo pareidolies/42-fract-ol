@@ -12,49 +12,6 @@
 
 #include "../includes/fractol.h"
 
-//check
-
-/*int	get_color(int iterations, int shift)
-{
-	int	color;
-
-	if (iterations == MAX_ITERATIONS)
-		return (0xFF000000);
-	iterations += shift;
-	color = 0;
-	if (iterations % 60 < 20)
-	{
-		color += (int)(255 - iterations % 60 / 20.0 * 255) << 16;
-		color += (int)(iterations % 60 / 20.0 * 255) << 8;
-	}
-	else if (iterations % 60 < 40)
-	{
-		color += (int)(255 - (iterations - 20) % 60 / 20.0 * 255) << 8;
-		color += (int)((iterations - 20) % 60 / 20.0 * 255);
-	}
-	else
-	{
-		color += (int)(255 - (iterations - 40) % 60 / 20.0 * 255);
-		color += (int)((iterations - 40) % 60 / 20.0 * 255) << 16;
-	}
-	return (color);
-}*/
-
-/*JRALEMAN
-fractol->image.data[pos] = fractol->color.red + (depth * 2.42);
-		fractol->image.data[pos + 1] = fractol->color.green + (depth * 2.42);
-		fractol->image.data[pos + 2] = fractol->color.blue + (depth * 2.42);*/
-
-/*fractol->color.red = 0x42;
-	fractol->color.green = 0x32;
-	fractol->color.blue = 0x22;*/
-
-/*fractol->image.data[pos] = fractol->color.red + (depth * 2.42);
-		fractol->image.data[pos + 1] = fractol->color.green + (depth * 2.42);
-		fractol->image.data[pos + 2] = fractol->color.blue + (depth * 2.42);*/
-
-/*MAX = 42*/
-
 int	lighten_or_darken(int color, int percent)
 {
 	int	r;
@@ -72,6 +29,29 @@ int	get_color(int iterations, t_data *data)
 	t_color	color;
 	int		result;
 
+	if (data->type == 3)
+	{
+		if (iterations == 0)
+			return (0x00FFFAF0);
+		else if (iterations == 1) // orange
+			return (0x00FF8C00);
+		else if (iterations == 2)
+			return (0x00FF0000);
+		else if (iterations == 3)
+			return (0x00CC0099);
+		else if (iterations == 4)
+			return (0x003399FF);
+		else if (iterations == 5)
+			return (0x00663366);
+		else if (iterations == 6)
+			return (0x00FFCC99);
+		else if (iterations == 7)
+			return (0x0099CC99);
+		else if (iterations == 8)
+			return (0x00330099);
+		else
+			return (0x00000033);
+	}
 	if (iterations == MAX_ITERATIONS)
 		return ((int)0x00A3D4CB);
 	color.red = 0xD0 + (iterations * 2.42);

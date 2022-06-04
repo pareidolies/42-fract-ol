@@ -38,10 +38,6 @@ void	compute_fractal(t_data *data)
 	int			i;
 	t_complex	z0;
 
-	/*data->fractal = malloc(sizeof(t_fractal) * WIDTH * HEIGHT);
-	MALLOC_ERROR
-	if (!data->fractal)
-		return ;*/
 	i = 0;
 	z0.re = 0;
 	z0.im = 0;
@@ -64,10 +60,6 @@ void	initialize_sierpinski(t_data *data)
 	t_fractal	tmp;
 	int			i;
 
-	/*data->fractal = malloc(sizeof(t_fractal) * WIDTH * HEIGHT);
-	MALLOC_ERROR
-	if (!data->fractal)
-		return ;*/
 	i = 0;
 	while (i < WIDTH * HEIGHT)
 	{
@@ -117,5 +109,5 @@ void	fill_sierpinski(double x, double y, double a, double b, int n, t_data *data
 void	compute_sierpinski(t_data *data)
 {
 	initialize_sierpinski(data);
-	fill_sierpinski(0.0000, 0.0000, WIDTH, HEIGHT, 9, data);
+	fill_sierpinski(0.0000, 0.0000, WIDTH, HEIGHT, 7, data);
 }

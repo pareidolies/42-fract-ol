@@ -18,10 +18,6 @@ void	create_set(t_data *data)
 	double		x;
 	double		y;
 
-	/*data->points = malloc(sizeof(t_complex) * WIDTH * HEIGHT);
-	MALLOC_ERROR
-	if (!data->points)
-		return ;*/
 	y = 0;
 	while (y < HEIGHT)
 	{
@@ -69,14 +65,12 @@ void	draw_fractal(t_data *data)
 	void		*image;
 
 	create_set(data);
-	//print_set(data);
 	if (data->type == SIERPINSKI)
 	{
 		compute_sierpinski(data);
 	}
 	else
 		compute_fractal(data);
-	//print_fractal(data);
 	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	transpose_to_image(image, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->window_ptr, image, 0, 0);
