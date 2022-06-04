@@ -1,48 +1,52 @@
-SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c
+SRCS		=	main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c
 
-SRCS_DIR	= ./srcs/
+SRCS_BONUS	=
 
-SRCS_PATH	= $(SRCS:%=$(SRCS_DIR)%)
+OBJS		=	$(addprefix build/,${SRCS:.c=.o})
 
-OBJS		= $(SRCS_PATH:%.c=%.o)
+OBJS_BONUS	=	$(addprefix build/,${SRCS_BONUS:.c=.o})
 
-PATH_LIBFT	= -C libft --no-print-directory
+NAME		=	fractol
 
-PATH_PRINTF	= -C printf --no-print-directory
+CFLAGS		=	-Wall -Werror -Wextra
 
-PATH_MLX	= -C mlx_linux --no-print-directory
+INCLUDE		=	includes/
 
-LIBRARY		= ./libft/libft.a
+LIBS		=	-lm -lXext -lX11
 
-LIBRARY_B	= ./printf/libftprintf.a
+MY_LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 
-NAME		= fractol
+MAX_SPEED	=	100
 
-RM		= rm -f
+all		:	$(NAME)
 
-CC		= cc -Wall -Wextra -Werror
+build/%.o	:	srcs/%.c
+	@if [ ! -d $(dir $@) ]; then\
+		mkdir -p $(dir $@);\
+	fi
+	cc ${CFLAGS} -I ${INCLUDE} -D MAX_SPEED=$(MAX_SPEED) -c $< -o $@ -O3 -fPIE
 
-%.o: %.c
-	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+libs/libft/libft.a	:
+	make -C libs/libft
 
-all:		$(NAME)
+libs/minilibx-linux/libmlx.a	:
+	make -C libs/minilibx-linux
 
-$(NAME): $(OBJS)
-		$(MAKE) $(PATH_MLX)
-		$(MAKE) $(PATH_LIBFT)
-		$(MAKE) $(PATH_PRINTF)
-		$(CC) $(SRCS_PATH) $(LIBRARY) $(LIBRARY_B) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
+$(NAME)	:	${MY_LIBS} ${OBJS}
+	 gcc ${CFLAGS} ${OBJS} ${MY_LIBS} ${LIBS} -o ${NAME} -O3 -fPIE
 
-clean:
-		$(MAKE) clean $(PATH_LIBFT)
-		$(MAKE) clean $(PATH_PRINTF)
-		${RM} ${OBJS} ${OBJS_BONUS}
+clean	:
+	rm -Rf build/
+	make -C libs/libft clean
+	make -C libs/minilibx-linux clean
 
-fclean:		clean
-		$(MAKE) fclean $(PATH_LIBFT)
-		$(MAKE) fclean $(PATH_PRINTF)
-		${RM} ${NAME}
+fclean	:	clean
+	rm -f ${NAME}
+	make -C libs/libft fclean
 
-re:		fclean ${NAME}
+re		:	fclean ${NAME}
 
-.PHONY:		all clean fclean re
+bonus	:	${MY_LIBS} ${OBJS} $(OBJS_BONUS)
+	gcc ${CFLAGS} ${LIBS} ${OBJS} ${OBJS_BONUS} -o ${NAME}
+
+.PHONY	:	all clean fclean re bonus

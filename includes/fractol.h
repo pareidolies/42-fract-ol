@@ -3,15 +3,15 @@
 #define FRACTOL_H
 
 #include "../printf/includes/ft_printf.h"
-#include "../libft/libft.h"
-#include <mlx.h>
+#include "../libs/libft/libft.h"
+#include "../libs/minilibx-linux/mlx.h"
 #include <X11/keysym.h>
 #include "stdlib.h"
 #include <stdio.h>
 #include <math.h>
 
-# define WIDTH				1000
-# define HEIGHT				1000
+# define WIDTH				400
+# define HEIGHT				400
 # define TITLE				"fractol"
 
 # define ANSI_COLOR_BLUE		"\x1b[94m"
@@ -39,7 +39,7 @@
 # define RIGHT_KEY			65363
 # define UP_KEY				65362
 # define DOWN_KEY			65364
-# define C_KEY			99
+# define C_KEY				99
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
@@ -80,8 +80,8 @@ typedef struct	s_data {
 	t_coordinates	min;
 	double			color_shift;
 	t_complex		c;
-	t_complex		*points;
-	t_fractal		*fractal;
+	t_complex		points[WIDTH * HEIGHT];
+	t_fractal		fractal[WIDTH * HEIGHT];
 }		t_data;
 
 //main.c

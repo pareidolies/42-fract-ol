@@ -18,10 +18,10 @@ void	create_set(t_data *data)
 	double		x;
 	double		y;
 
-	data->points = malloc(sizeof(t_complex) * WIDTH * HEIGHT);
-	//MALLOC_ERROR
+	/*data->points = malloc(sizeof(t_complex) * WIDTH * HEIGHT);
+	MALLOC_ERROR
 	if (!data->points)
-		return ;
+		return ;*/
 	y = 0;
 	while (y < HEIGHT)
 	{
