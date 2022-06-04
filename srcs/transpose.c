@@ -14,13 +14,27 @@
 
 int	lighten_or_darken(int color, int percent)
 {
+	(void)percent;
 	int	r;
 	int	g;
 	int	b;
 
-	r = ((color >> 16) & 0xFF) + percent;
-	g = ((color >> 8) & 0xFF) + percent;
-	b = (color & 0xFF) + percent;
+	r = abs(((color >> 16) & 0xFF) - 200);
+	g = abs(((color >> 8) & 0xFF) - 200);
+	b = abs((color & 0xFF) - 200);
+	return (r << 16 | g << 8 | b);
+}
+
+int	change_color(int color, int shift)
+{
+	(void)shift;
+	int	r;
+	int	g;
+	int	b;
+
+	r = ((color >> 16) & 0xFF) - 50;
+	g = ((color >> 8) & 0xFF) + 50;
+	b = (color & 0xFF) + 50;
 	return (r << 16 | g << 8 | b);
 }
 
@@ -53,12 +67,15 @@ int	get_color(int iterations, t_data *data)
 			return (0x00000033);
 	}
 	if (iterations == MAX_ITERATIONS)
-		return ((int)0x00A3D4CB);
-	color.red = 0xD0 + (iterations * 2.42);
-	color.green = 0xC5 + (iterations * 2.42);
-	color.blue = 0xB0 + (iterations * 2.42);
+		return ((int)0x00AFF9966);
+	if (data->type == 1)
+		color.red = 0x33 + (iterations * 10);
+	else
+		color.red = 0x33 + (iterations * 2);
+	color.green = 0x00;
+	color.blue = 0x66;
 	result = color.red << 16 | color.green << 8 | color.blue;
-	return (lighten_or_darken(result, data->color_shift));
+	return (result);
 }
 
 void	transpose_to_image(void *image, t_data *data)
