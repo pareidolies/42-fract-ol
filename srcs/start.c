@@ -24,8 +24,10 @@ void	initialize_info(t_data *data, char **argv)
 		data->c.im = parse_double(argv[3]);
 		printf("%f\n", data->c.im);
 	}
-	else
+	else if (!ft_strncmp(argv[1], "Sierpinski", ft_strlen(argv[1])))
 		data->type = SIERPINSKI;
+	else
+		data->type = BURNINGSHIP;
 	data->min.x = -2;
 	data->max.x = 2;
 	data->min.y = -2;

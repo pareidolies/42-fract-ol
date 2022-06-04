@@ -74,6 +74,8 @@ int	check_args(int argc, char **argv)
 	}
 	if (!ft_strncmp(argv[1], "Sierpinski", len) && argc == 2)
 		return (1);
+	if (!ft_strncmp(argv[1], "Burning-Ship", len) && argc == 2)
+		return (1);
 	return (0);
 }
 

@@ -23,14 +23,16 @@
 # define M2			"Case 1 : ./fractol Mandelbrot\n"
 # define M3			"Case 2 : ./fractol Julia Re(C) Im(C)\n"
 # define M4			"Case 3 : ./fractol Sierpinski\n\n"
-# define M5			"--------------------------------------\n\n"
+# define M5			"Case 4 : ./fractol Burning Ship\n\n"
+# define M6			"--------------------------------------\n\n"
 
 
 # define MANDELBROT			1
 # define JULIA				2
 # define SIERPINSKI			3
+# define BURNINGSHIP		4
 
-# define MAX_ITERATIONS		22
+# define MAX_ITERATIONS		200
 
 # define MLX_ERROR			11
 
@@ -39,7 +41,7 @@
 # define RIGHT_KEY			65363
 # define UP_KEY				65362
 # define DOWN_KEY			65364
-# define C_KEY				99
+# define C_KEY				111
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
@@ -108,6 +110,7 @@ void	compute_sierpinski(t_data *data);
 //maths.c
 unsigned int	distance(t_complex z);
 t_complex	square(t_complex z);
+t_complex	square_abs(t_complex z);
 t_complex	sum(t_complex z1, t_complex z2);
 
 //transpose.c

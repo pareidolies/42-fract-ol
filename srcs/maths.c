@@ -30,6 +30,17 @@ t_complex	square(t_complex z)
 	return (result);
 }
 
+t_complex	square_abs(t_complex z)
+{
+	t_complex	result;
+
+	z.re = fabs(z.re);
+	z.im = fabs(z.im);
+	result.re = z.re * z.re - z.im * z.im;
+	result.im = 2 * z.re * z.im;
+	return (result);
+}
+
 unsigned int	distance(t_complex z)
 {
 	int	distance;

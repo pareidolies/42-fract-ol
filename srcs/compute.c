@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-int	calculate_iterations(t_complex z0, t_complex c)
+int	calculate_iterations(t_complex z0, t_complex c, t_data *data)
 {
 	t_complex	zn;
 	int			n;
@@ -21,7 +21,10 @@ int	calculate_iterations(t_complex z0, t_complex c)
 	zn = z0;
 	while (n < MAX_ITERATIONS)
 	{
-		zn = sum(square(zn), c);
+		if (data->type == 1 || data->type == 2)
+			zn = sum(square(zn), c);
+		else if (data->type == 4)
+			zn = sum(square_abs(zn), c);
 		if (distance(zn) > 2)
 			break ;
 		n++;
@@ -46,9 +49,11 @@ void	compute_fractal(t_data *data)
 	{
 		tmp.nbr = data->points[i];
 		if (data->type == MANDELBROT)
-			tmp.iterations = calculate_iterations(z0, data->points[i]);
+			tmp.iterations = calculate_iterations(z0, data->points[i], data);
+		else if (data->type == BURNINGSHIP)
+			tmp.iterations = calculate_iterations(z0, data->points[i], data);
 		else if (data->type == JULIA)
-			tmp.iterations = calculate_iterations(data->points[i], data->c);
+			tmp.iterations = calculate_iterations(data->points[i], data->c, data);
 		data->fractal[i] = tmp;
 		i++;
 	}
@@ -112,5 +117,5 @@ void	fill_sierpinski(double x, double y, double a, double b, int n, t_data *data
 void	compute_sierpinski(t_data *data)
 {
 	initialize_sierpinski(data);
-	fill_sierpinski(0.0000, 0.0000, 400.0000, 400.0000, 9, data);
+	fill_sierpinski(0.0000, 0.0000, WIDTH, HEIGHT, 9, data);
 }

@@ -79,34 +79,6 @@ int	get_color(int iterations, t_data *data)
 	color.blue = 0xB0 + (iterations * 2.42);
 	result = color.red << 16 | color.green << 8 | color.blue;
 	return (lighten_or_darken(result, data->color_shift));
-	/*color = (int)0x00800080;
-	return (lighten_or_darken(color, iterations * 100));*/
-	/*if (iterations == MAX_ITERATIONS)
-		return ((int)0x00FF0000);
-	else
-		return ((int)0x00000000);
-	if (iterations == MAX_ITERATIONS)
-		return ((int)0x00000058);
-	else if (iterations >= 45 && iterations < 50)
-		return (lighten_or_darken(color, 10));
-	else if (iterations >= 40 && iterations < 45)
-		return (lighten_or_darken(color, 20));
-	else if (iterations >= 35 && iterations < 40)
-		return (lighten_or_darken(color, 30));
-	else if (iterations >= 30 && iterations < 35)
-		return (lighten_or_darken(color, 40));
-	else if (iterations >= 25 && iterations < 30)
-		return (lighten_or_darken(color, 50));
-	else if (iterations >= 20 && iterations < 25)
-		return (lighten_or_darken(color, 60));
-	else if (iterations >= 15 && iterations < 20)
-		return (lighten_or_darken(color, 70));
-	else if (iterations >= 10 && iterations < 15)
-		return (lighten_or_darken(color, 80));
-	else if (iterations >= 5 && iterations < 10)
-		return (lighten_or_darken(color, 100));
-	else
-		return ((int)0x00000000);*/
 }
 
 void	transpose_to_image(void *image, t_data *data)

@@ -70,12 +70,12 @@ void	draw_fractal(t_data *data)
 
 	create_set(data);
 	//print_set(data);
-	if (data->type == MANDELBROT || data->type == JULIA)
+	if (data->type == SIERPINSKI)
 	{
-		compute_fractal(data);
+		compute_sierpinski(data);
 	}
 	else
-		compute_sierpinski(data);
+		compute_fractal(data);
 	//print_fractal(data);
 	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	transpose_to_image(image, data);
