@@ -41,17 +41,9 @@
 # define RIGHT_KEY			65363
 # define UP_KEY				65362
 # define DOWN_KEY			65364
-# define C_KEY				111
+# define SPACE_KEY			32
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
-
-/*typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
-}		t_data;*/
 
 typedef struct	s_complex {
 	double	re;

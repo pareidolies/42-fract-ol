@@ -35,6 +35,7 @@ void	move(int keycode, t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
+	printf("%d\n", keycode);
 	if (keycode == ESC_KEY)
 	{
 		ft_putstr_fd_color("Good Bye !\n", 1, ANSI_COLOR_BLUE);
@@ -42,7 +43,7 @@ int	key_hook(int keycode, t_data *data)
 	}
 	else if (keycode >= LEFT_KEY && keycode <= DOWN_KEY)
 		move(keycode, data);
-	else if (keycode == C_KEY)
+	else if (keycode == SPACE_KEY)
 	{
 		data->color_shift += 10;
 		draw_fractal(data);
