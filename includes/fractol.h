@@ -33,7 +33,7 @@
 # define M1			"\n--------------- MANUAL ---------------\n\n"
 # define M2			"Case 1 : ./fractol Mandelbrot\n"
 # define M3			"Case 2 : ./fractol Julia Re(C) Im(C)\n"
-# define M4			"Case 3 : ./fractol Burning Ship\n\n"
+# define M4			"Case 3 : ./fractol Burning-Ship\n\n"
 # define M5			"--------------------------------------\n\n"
 
 # define MANDELBROT			1

@@ -24,7 +24,7 @@ build/%.o	:	srcs/%.c
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi
-	cc ${CFLAGS} -I ${INCLUDE} -D MAX_SPEED=$(MAX_SPEED) -c $< -o $@ -O3 -fPIE
+	cc ${CFLAGS} -I ${INCLUDE} -c $< -o $@ -O3 -fPIE
 
 libs/libft/libft.a	:
 	make -C libs/libft
