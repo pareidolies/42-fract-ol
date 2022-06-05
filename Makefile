@@ -47,4 +47,7 @@ re		:	fclean ${NAME}
 bonus	:	${MY_LIBS} ${OBJS} $(OBJS_BONUS)
 	gcc ${CFLAGS} ${LIBS} ${OBJS} ${OBJS_BONUS} -o ${NAME}
 
+norm	:
+		norminette $(LIBFT_DIR) $(INC_DIR) $(SRCS_DIR)
+
 .PHONY	:	all clean fclean re bonus
