@@ -45,7 +45,10 @@ int	key_hook(int keycode, t_data *data)
 		move(keycode, data);
 	else if (keycode == SPACE_KEY)
 	{
-		data->color_shift += 10;
+		if (data->color_shift == 9)
+			data->color_shift = 0;
+		else
+			data->color_shift++;
 		draw_fractal(data);
 	}
 	return (0);

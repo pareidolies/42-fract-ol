@@ -72,10 +72,12 @@ typedef struct	s_data {
 	int				type;
 	t_coordinates	max;
 	t_coordinates	min;
-	double			color_shift;
+	int				color_shift;
 	t_complex		c;
 	t_complex		points[WIDTH * HEIGHT];
 	t_fractal		fractal[WIDTH * HEIGHT];
+	int				palette[10];
+	int				gradient[10];
 }		t_data;
 
 //main.c

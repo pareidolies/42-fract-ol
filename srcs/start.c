@@ -35,6 +35,30 @@ void	initialize_info(t_data *data, char **argv)
 	data->color_shift = 0;
 }
 
+void	initialize_colors(t_data *data)
+{
+	data->palette[0] = 0x00AFF9966;
+	data->gradient[0] = 0x00330066;
+	data->palette[1] = 0x007B0828;
+	data->gradient[1] = 0x00522B47;
+	data->palette[2] = 0x003C474B;
+	data->gradient[2] = 0x00162521;
+	data->palette[3] = 0x003AAED8;
+	data->gradient[3] = 0x002BD9FE;
+	data->palette[4] = 0x0056203D;
+	data->gradient[4] = 0x009D79BC;
+	data->palette[5] = 0x00011627;
+	data->gradient[5] = 0x00FDFFFC;
+	data->palette[6] = 0x0035012C;
+	data->gradient[6] = 0x003A015C;
+	data->palette[7] = 0x00ADB6C4;
+	data->gradient[7] = 0x00294C60;
+	data->palette[8] = 0x00C03221;
+	data->gradient[8] = 0x00E2C290;
+	data->palette[9] = 0x00FCA17D;
+	data->gradient[9] = 0x00DA627D;
+}
+
 int	start_fractol(char **argv)
 {
 	t_data	data;
@@ -50,6 +74,7 @@ int	start_fractol(char **argv)
 	}
 	//Initialize
 	initialize_info(&data, argv);
+	initialize_colors(&data);
 	//Draw fractal (loop hook)
 	draw_fractal(&data);
 	//Setup hooks
