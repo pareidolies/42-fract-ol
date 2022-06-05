@@ -1,4 +1,4 @@
-SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c
+SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c color.c
 
 SRCS_BONUS	=
 

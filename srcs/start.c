@@ -22,8 +22,6 @@ void	initialize_info(t_data *data, char **argv)
 		data->c.re = parse_double(argv[2]);
 		data->c.im = parse_double(argv[3]);
 	}
-	else if (!ft_strncmp(argv[1], "Sierpinski", ft_strlen(argv[1])))
-		data->type = SIERPINSKI;
 	else
 		data->type = BURNINGSHIP;
 	data->min.x = -2;
@@ -70,18 +68,13 @@ int	start_fractol(char **argv)
 		free(data.mlx_ptr);
 		return (MLX_ERROR);
 	}
-	//Initialize
 	initialize_info(&data, argv);
 	initialize_colors(&data);
-	//Draw fractal (put image to window)
 	draw_fractal(&data);
-	//Setup hooks
 	mlx_key_hook(data.window_ptr, key_hook, &data);
 	mlx_mouse_hook(data.window_ptr, mouse_hook, &data);
 	mlx_hook(data.window_ptr, 17, 1L << 8, destroy, &data);
-	//While(1)
 	mlx_loop(data.mlx_ptr);
-	//End
 	mlx_destroy_window(data.mlx_ptr, data.window_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);

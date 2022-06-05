@@ -65,12 +65,7 @@ void	draw_fractal(t_data *data)
 	void		*image;
 
 	create_set(data);
-	if (data->type == SIERPINSKI)
-	{
-		compute_sierpinski(data);
-	}
-	else
-		compute_fractal(data);
+	compute_fractal(data);
 	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	transpose_to_image(image, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->window_ptr, image, 0, 0);

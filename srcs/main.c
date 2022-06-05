@@ -12,13 +12,6 @@
 
 #include "../includes/fractol.h"
 
-void	ft_putstr_fd_color(char *str, int fd, char *color)
-{
-	ft_putstr_fd(color, fd);
-	ft_putstr_fd(str, fd);
-	ft_putstr_fd(ANSI_COLOR_RESET, fd);
-}
-
 void	print_manual(void)
 {
 	ft_putstr_fd_color(M1, 2, ANSI_COLOR_BLUE);
@@ -72,8 +65,6 @@ int	check_args(int argc, char **argv)
 			return (0);
 		return (1);
 	}
-	if (!ft_strncmp(argv[1], "Sierpinski", len) && argc == 2)
-		return (1);
 	if (!ft_strncmp(argv[1], "Burning-Ship", len) && argc == 2)
 		return (1);
 	return (0);
@@ -82,7 +73,7 @@ int	check_args(int argc, char **argv)
 void	print_error(int error)
 {
 	if (error == 1)
-		ft_putstr_fd_color("Error.\n", 2, ANSI_COLOR_LIGHT_RED);
+		ft_putstr_fd_color("Mlx error.\n", 2, ANSI_COLOR_LIGHT_RED);
 }
 
 int	main(int argc, char **argv)
