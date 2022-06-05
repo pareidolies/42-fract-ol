@@ -70,15 +70,30 @@ int	mouse_hook(int button, int xx, int yy, t_data *data)
 	mouse.y = yy;
 	if (button == ZOOM_IN_KEY || button == ZOOM_OUT_KEY)
 	{
-		len = data->max.x - data->min.x;
-		if (button == ZOOM_IN_KEY)
-			n_len = len / 1.2;
+		if (data->type == JULIA)
+		{
+			len = data->max.x - data->min.x;
+			if (button == ZOOM_IN_KEY)
+				n_len = len / 1.2;
+			else
+				n_len = len * 1.2;
+			data->min.x += mouse.x / WIDTH * (len - n_len);
+			data->max.y += (1 - mouse.y / HEIGHT) * (len - n_len);
+			data->max.x -= (1 - mouse.x / WIDTH) * (len - n_len);
+			data->min.y -= (mouse.y / HEIGHT) * (len - n_len);
+		}
 		else
-			n_len = len * 1.2;
-		data->min.x += mouse.x / WIDTH * (len - n_len);
-		data->min.y += mouse.y / HEIGHT * (len - n_len);
-		data->max.x -= (1 - mouse.x / WIDTH) * (len - n_len);
-		data->max.y -= (1 - mouse.y / HEIGHT) * (len - n_len);
+		{
+			len = data->max.x - data->min.x;
+			if (button == ZOOM_IN_KEY)
+				n_len = len / 1.2;
+			else
+				n_len = len * 1.2;
+			data->min.x += mouse.x / WIDTH * (len - n_len);
+			data->min.y += mouse.y / HEIGHT * (len - n_len);
+			data->max.x -= (1 - mouse.x / WIDTH) * (len - n_len);
+			data->max.y -= (1 - mouse.y / HEIGHT) * (len - n_len);
+		}
 		draw_fractal(data);
 	}
 	return (0);

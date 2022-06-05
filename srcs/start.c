@@ -26,8 +26,16 @@ void	initialize_info(t_data *data, char **argv)
 		data->type = BURNINGSHIP;
 	data->min.x = -2;
 	data->max.x = 2;
-	data->min.y = -2;
-	data->max.y = 2;
+	if (data->type == JULIA)
+	{
+		data->min.y = 2;
+		data->max.y = -2;
+	}
+	else
+	{
+		data->min.y = -2;
+		data->max.y = 2;
+	}
 	data->color_shift = 0;
 }
 
