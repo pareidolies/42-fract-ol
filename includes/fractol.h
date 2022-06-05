@@ -7,17 +7,16 @@
 #include "../libs/minilibx-linux/mlx.h"
 #include <X11/keysym.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 # define WIDTH				400
 # define HEIGHT				400
 # define TITLE				"fractol"
 
-# define ANSI_COLOR_BLUE		"\x1b[94m"
+# define ANSI_COLOR_BLUE			"\x1b[94m"
 # define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
 # define ANSI_COLOR_LIGHT_RED		"\x1b[91m"
-# define ANSI_COLOR_RESET		"\x1b[0m"
+# define ANSI_COLOR_RESET			"\x1b[0m"
 
 # define M1			"\n--------------- MANUAL ---------------\n\n"
 # define M2			"Case 1 : ./fractol Mandelbrot\n"

@@ -1,4 +1,4 @@
-SRCS		=	main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c
+SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c
 
 SRCS_BONUS	=
 
@@ -16,13 +16,15 @@ LIBS		=	-lm -lXext -lX11
 
 MY_LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 
+MAX_SPEED	=	100
+
 all		:	$(NAME)
 
 build/%.o	:	srcs/%.c
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi
-	cc ${CFLAGS} -I ${INCLUDE} -c $< -o $@ -O3 -fPIE
+	cc ${CFLAGS} -I ${INCLUDE} -D MAX_SPEED=$(MAX_SPEED) -c $< -o $@ -O3 -fPIE
 
 libs/libft/libft.a	:
 	make -C libs/libft

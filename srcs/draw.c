@@ -74,5 +74,5 @@ void	draw_fractal(t_data *data)
 	image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	transpose_to_image(image, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->window_ptr, image, 0, 0);
-	//clean_set_and_image (free set + mlx_destroy_image(mlx_ptr, image))
+	mlx_destroy_image(data->mlx_ptr, image);
 }

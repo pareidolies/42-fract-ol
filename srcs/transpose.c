@@ -12,32 +12,6 @@
 
 #include "../includes/fractol.h"
 
-/*int	lighten_or_darken(int color, int percent)
-{
-	(void)percent;
-	int	r;
-	int	g;
-	int	b;
-
-	r = abs(((color >> 16) & 0xFF) - 200);
-	g = abs(((color >> 8) & 0xFF) - 200);
-	b = abs((color & 0xFF) - 200);
-	return (r << 16 | g << 8 | b);
-}*/
-
-/*int	change_color(int color, int shift)
-{
-	(void)shift;
-	int	r;
-	int	g;
-	int	b;
-
-	r = ((color >> 16) & 0xFF) - 50;
-	g = ((color >> 8) & 0xFF) + 50;
-	b = (color & 0xFF) + 50;
-	return (r << 16 | g << 8 | b);
-}*/
-
 int	get_color_sierpinski(int iterations)
 {
 	if (iterations == 0)

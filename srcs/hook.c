@@ -35,7 +35,6 @@ void	move(int keycode, t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
-	printf("%d\n", keycode);
 	if (keycode == ESC_KEY)
 	{
 		ft_putstr_fd_color("Good Bye !\n", 1, ANSI_COLOR_BLUE);
