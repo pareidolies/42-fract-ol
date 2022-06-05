@@ -31,7 +31,7 @@ libs/minilibx-linux/libmlx.a	:
 	make -C libs/minilibx-linux
 
 $(NAME)	:	${MY_LIBS} ${OBJS}
-	 gcc ${CFLAGS} ${OBJS} ${MY_LIBS} ${LIBS} -o ${NAME} -O3 -fPIE
+	 cc ${CFLAGS} ${OBJS} ${MY_LIBS} ${LIBS} -o ${NAME} -O3 -fPIE
 
 clean	:
 	rm -Rf build/
