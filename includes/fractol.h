@@ -111,5 +111,6 @@ void	transpose_to_image(void *image, t_data *data);
 //hook.c
 int	key_hook(int keycode, t_data *data);
 int	mouse_hook(int button, int xx, int yy, t_data *data);
+int	destroy(t_data *data);
 
 #endif

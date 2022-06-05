@@ -51,6 +51,13 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
+int	destroy(t_data *data)
+{
+	ft_putstr_fd_color("Good Bye !\n", 1, ANSI_COLOR_BLUE);
+	mlx_loop_end(data->mlx_ptr);
+	return (0);
+}
+
 int	mouse_hook(int button, int xx, int yy, t_data *data)
 {
 	double				n_len;
