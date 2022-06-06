@@ -24,6 +24,7 @@ void	print_manual(void)
 	ft_putstr_fd_color(M8, 2, ANSI_COLOR_BLUE);
 	ft_putstr_fd_color(M9, 2, ANSI_COLOR_BLUE);
 	ft_putstr_fd_color(M10, 2, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(M11, 2, ANSI_COLOR_BLUE);
 }
 
 int	is_float(char *str)

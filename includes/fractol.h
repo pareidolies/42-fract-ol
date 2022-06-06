@@ -35,10 +35,11 @@
 # define M4			"Case 3 : ./fractol Burning-Ship\n\n"
 # define M5			"And once the window is open :\n\n"
 # define M6			"[ARROW KEYS] : move across the screen\n"
-# define M7			"[MOUSE SCROLLING] : zoom in and out\n"
+# define M7			"[MOUSE WHEEL] : zoom in and out\n"
 # define M8			"[SPACE] : change the colors\n"
-# define M9			"[ESC] : quit the programm\n\n"
-# define M10			"--------------------------------------\n\n"
+# define M9			"[TAB] : add psychedelic effect\n"
+# define M10			"[ESC] : quit the programm\n\n"
+# define M11			"--------------------------------------\n\n"
 
 # define GOODBYE	"\nSee you soon !\n\n"
 
