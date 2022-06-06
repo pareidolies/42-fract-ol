@@ -14,9 +14,8 @@
 
 # define FRACTOL_H
 
-# include "../printf/includes/ft_printf.h"
-# include "../libs/libft/libft.h"
-# include "../libs/minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx_linux/mlx.h"
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <math.h>
@@ -36,11 +35,18 @@
 # define M4			"Case 3 : ./fractol Burning-Ship\n\n"
 # define M5			"--------------------------------------\n\n"
 
+# define GOODBYE	"\nSee you soon !\n\n"
+
+# define MLX_MSSG	"\nAn mlx error occurred.\n\n"
+
 # define MANDELBROT			1
 # define JULIA				2
 # define BURNINGSHIP		3
 
 # define MAX_ITERATIONS		200
+
+# define ZOOM				0.2
+# define GAMMA				0.1
 
 # define MLX_ERROR			11
 

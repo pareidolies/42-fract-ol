@@ -14,21 +14,23 @@
 
 void	move(int keycode, t_data *data)
 {
-	double			shift;
+	double			len;
 
 	if (keycode == LEFT_KEY || keycode == RIGHT_KEY)
 	{
-		shift = (data->max.x - data->min.x) * 0.1;
-		shift *= (keycode == LEFT_KEY) * (-1) + (keycode == RIGHT_KEY) * 1;
-		data->min.x += shift;
-		data->max.x += shift;
+		len = data->max.x - data->min.x;
+		if (keycode == LEFT_KEY)
+			len = (-1) * len;
+		data->min.x += len * GAMMA;
+		data->max.x += len * GAMMA;
 	}
 	else if (keycode == DOWN_KEY || keycode == UP_KEY)
 	{
-		shift = (data->max.y - data->min.y) * 0.1;
-		shift *= (keycode == UP_KEY) * (-1) + (keycode == DOWN_KEY) * 1;
-		data->min.y += shift;
-		data->max.y += shift;
+		len = data->max.y - data->min.y;
+		if (keycode == UP_KEY)
+			len = (-1) * len;
+		data->min.y += len * GAMMA;
+		data->max.y += len * GAMMA;
 	}
 	draw_fractal(data);
 }
@@ -37,7 +39,7 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == ESC_KEY)
 	{
-		ft_putstr_fd_color("\nSee you soon !\n\n", 1, ANSI_COLOR_BLUE);
+		ft_putstr_fd_color(GOODBYE, 1, ANSI_COLOR_BLUE);
 		mlx_loop_end(data->mlx_ptr);
 	}
 	else if (keycode >= LEFT_KEY && keycode <= DOWN_KEY)
@@ -55,14 +57,13 @@ int	key_hook(int keycode, t_data *data)
 
 int	destroy(t_data *data)
 {
-	ft_putstr_fd_color("\nSee you soon !\n\n", 1, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color(GOODBYE, 1, ANSI_COLOR_BLUE);
 	mlx_loop_end(data->mlx_ptr);
 	return (0);
 }
 
 int	mouse_hook(int button, int xx, int yy, t_data *data)
 {
-	double				n_len;
 	double				len;
 	t_coordinates		mouse;
 
@@ -71,21 +72,19 @@ int	mouse_hook(int button, int xx, int yy, t_data *data)
 	if (button == ZOOM_IN_KEY || button == ZOOM_OUT_KEY)
 	{
 		len = data->max.x - data->min.x;
-		if (button == ZOOM_IN_KEY)
-			n_len = len / 1.2;
-		else
-			n_len = len * 1.2;
-		data->min.x += mouse.x / WIDTH * (len - n_len);
-		data->max.x -= (1 - mouse.x / WIDTH) * (len - n_len);
+		if (button == ZOOM_OUT_KEY)
+			len = (-1) * len;
+		data->min.x += (mouse.x / WIDTH) * (len * ZOOM);
+		data->max.x -= (1 - mouse.x / WIDTH) * (len * ZOOM);
 		if (data->type == JULIA)
 		{
-			data->max.y += (1 - mouse.y / HEIGHT) * (len - n_len); //* 0,2 OU * -0,2
-			data->min.y -= mouse.y / HEIGHT * (len - n_len);
+			data->max.y += (1 - mouse.y / HEIGHT) * (len * ZOOM);
+			data->min.y -= (mouse.y / HEIGHT) * (len * ZOOM);
 		}
 		else
 		{
-			data->min.y += mouse.y / HEIGHT * (len - n_len);
-			data->max.y -= (1 - mouse.y / HEIGHT) * (len - n_len);
+			data->min.y += (mouse.y / HEIGHT) * (len * ZOOM);
+			data->max.y -= (1 - mouse.y / HEIGHT) * (len * ZOOM);
 		}
 		draw_fractal(data);
 	}

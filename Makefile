@@ -1,53 +1,51 @@
 SRCS		= main.c start.c parse.c draw.c compute.c maths.c transpose.c hook.c color.c utils.c
 
-SRCS_BONUS	=
+SRCS_DIR	= ./srcs/
 
-OBJS		=	$(addprefix build/,${SRCS:.c=.o})
+SRCS_PATH	= $(SRCS:%=$(SRCS_DIR)%)
 
-OBJS_BONUS	=	$(addprefix build/,${SRCS_BONUS:.c=.o})
+OBJS		= $(SRCS_PATH:%.c=%.o)
 
-NAME		=	fractol
+PATH_LIBFT	= -C libft --no-print-directory
 
-CFLAGS		=	-Wall -Werror -Wextra
+PATH_MLX	= -C mlx_linux --no-print-directory
 
-INCLUDE		=	includes/
+LIBRARY		= ./libft/libft.a ./mlx_linux/libmlx.a
 
-LIBS		=	-lm -lXext -lX11
+NAME		= fractol
 
-MY_LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
+RM		= rm -f
 
-all		:	$(NAME)
+CC		= cc -Wall -Wextra -Werror
 
-build/%.o	:	srcs/%.c
-	@if [ ! -d $(dir $@) ]; then\
-		mkdir -p $(dir $@);\
-	fi
-	cc ${CFLAGS} -I ${INCLUDE} -c $< -o $@ -O3 -fPIE
+%.o: %.c
+	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-libs/libft/libft.a	:
-	make -C libs/libft
+all:		$(NAME)
 
-libs/minilibx-linux/libmlx.a	:
-	make -C libs/minilibx-linux
+./libft/libft.a :
+	make -C ./libft
 
-$(NAME)	:	${MY_LIBS} ${OBJS}
-	 cc ${CFLAGS} ${OBJS} ${MY_LIBS} ${LIBS} -o ${NAME} -O3 -fPIE
+./mlx_linux/libmlx.a :
+	make -C ./mlx_linux
 
-clean	:
-	rm -Rf build/
-	make -C libs/libft clean
-	make -C libs/minilibx-linux clean
+$(NAME): $(LIBRARY) $(OBJS)
+		$(CC) $(OBJS) $(LIBRARY) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
 
-fclean	:	clean
-	rm -f ${NAME}
-	make -C libs/libft fclean
+clean:
+		$(MAKE) clean $(PATH_LIBFT)
+		$(MAKE) clean $(PATH_MLX)
+		${RM} ${OBJS} ${OBJS_BONUS}
 
-re		:	fclean ${NAME}
+fclean:		clean
+		$(MAKE) fclean $(PATH_LIBFT)
+		${RM} ${NAME}
 
-bonus	:	${MY_LIBS} ${OBJS} $(OBJS_BONUS)
-	gcc ${CFLAGS} ${LIBS} ${OBJS} ${OBJS_BONUS} -o ${NAME}
+re:		fclean ${NAME}
 
-norm	:
-		norminette $(LIBFT_DIR) $(INC_DIR) $(SRCS_DIR)
+bonus:		$(NAME)
 
-.PHONY	:	all clean fclean re bonus
+norm:		
+		norminette ./libft ./srcs ./includes
+
+.PHONY:		all clean fclean re

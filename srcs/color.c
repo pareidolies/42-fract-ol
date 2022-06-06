@@ -12,6 +12,8 @@
 
 #include "../includes/fractol.h"
 
+//get lighter && darker
+
 int	get_redder(int original, int speed)
 {
 	t_color	color;

@@ -72,8 +72,8 @@ int	check_args(int argc, char **argv)
 
 void	print_error(int error)
 {
-	if (error == 1)
-		ft_putstr_fd_color("Mlx error.\n", 2, ANSI_COLOR_LIGHT_RED);
+	if (error == MLX_ERROR)
+		ft_putstr_fd_color(MLX_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 }
 
 int	main(int argc, char **argv)
