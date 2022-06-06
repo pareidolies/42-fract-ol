@@ -33,7 +33,12 @@
 # define M2			"Case 1 : ./fractol Mandelbrot\n"
 # define M3			"Case 2 : ./fractol Julia Re(C) Im(C)\n"
 # define M4			"Case 3 : ./fractol Burning-Ship\n\n"
-# define M5			"--------------------------------------\n\n"
+# define M5			"And once the window is open :\n\n"
+# define M6			"[ARROW KEYS] : move across the screen\n"
+# define M7			"[MOUSE SCROLLING] : zoom in and out\n"
+# define M8			"[SPACE] : change the colors\n"
+# define M9			"[ESC] : quit the programm\n\n"
+# define M10			"--------------------------------------\n\n"
 
 # define GOODBYE	"\nSee you soon !\n\n"
 
@@ -56,6 +61,7 @@
 # define UP_KEY				65362
 # define DOWN_KEY			65364
 # define SPACE_KEY			32
+# define TAB_KEY			65289	
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
@@ -92,6 +98,7 @@ typedef struct s_data {
 	t_fractal		fractal[WIDTH * HEIGHT];
 	int				palette[10];
 	int				gradient[10];
+	int				psyche;
 }		t_data;
 
 //main.c
@@ -130,6 +137,8 @@ int				mouse_hook(int button, int xx, int yy, t_data *data);
 int				destroy(t_data *data);
 
 //color.c
+int				get_darker(int original, int speed);
+int				get_lighter(int original, int speed);
 int				get_redder(int original, int speed);
 int				get_greener(int original, int speed);
 int				get_bluer(int original, int speed);

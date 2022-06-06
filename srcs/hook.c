@@ -52,6 +52,14 @@ int	key_hook(int keycode, t_data *data)
 			data->color_shift++;
 		draw_fractal(data);
 	}
+	else if (keycode == TAB_KEY)
+	{
+		if (data->psyche == 18)
+			data->psyche = 2;
+		else
+			data->psyche += 8;
+		draw_fractal(data);
+	}
 	return (0);
 }
 

@@ -12,7 +12,29 @@
 
 #include "../includes/fractol.h"
 
-//get lighter && darker
+int	get_lighter(int original, int speed)
+{
+	t_color	color;
+	int		result;
+
+	color.red = ((original >> 16) & 0xFF) + speed;
+	color.green = ((original >> 8) & 0xFF) + speed;
+	color.blue = (original & 0xFF) + speed;
+	result = color.red << 16 | color.green << 8 | color.blue;
+	return (result);
+}
+
+int	get_darker(int original, int speed)
+{
+	t_color	color;
+	int		result;
+
+	color.red = ((original >> 16) & 0xFF) - speed;
+	color.green = ((original >> 8) & 0xFF) - speed;
+	color.blue = (original & 0xFF) - speed;
+	result = color.red << 16 | color.green << 8 | color.blue;
+	return (result);
+}
 
 int	get_redder(int original, int speed)
 {
