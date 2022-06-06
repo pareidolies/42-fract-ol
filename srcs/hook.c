@@ -37,7 +37,7 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == ESC_KEY)
 	{
-		ft_putstr_fd_color("Good Bye !\n", 1, ANSI_COLOR_BLUE);
+		ft_putstr_fd_color("\nSee you soon !\n\n", 1, ANSI_COLOR_BLUE);
 		mlx_loop_end(data->mlx_ptr);
 	}
 	else if (keycode >= LEFT_KEY && keycode <= DOWN_KEY)
@@ -55,7 +55,7 @@ int	key_hook(int keycode, t_data *data)
 
 int	destroy(t_data *data)
 {
-	ft_putstr_fd_color("Good Bye !\n", 1, ANSI_COLOR_BLUE);
+	ft_putstr_fd_color("\nSee you soon !\n\n", 1, ANSI_COLOR_BLUE);
 	mlx_loop_end(data->mlx_ptr);
 	return (0);
 }
@@ -79,7 +79,7 @@ int	mouse_hook(int button, int xx, int yy, t_data *data)
 		data->max.x -= (1 - mouse.x / WIDTH) * (len - n_len);
 		if (data->type == JULIA)
 		{
-			data->max.y += (1 - mouse.y / HEIGHT) * (len - n_len);
+			data->max.y += (1 - mouse.y / HEIGHT) * (len - n_len); //* 0,2 OU * -0,2
 			data->min.y -= mouse.y / HEIGHT * (len - n_len);
 		}
 		else
