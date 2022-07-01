@@ -102,7 +102,7 @@ Au départ, on ne voit rien de très fascinant... Mais en zoomant en bas à gauc
 Pour terminer, voici quelques conseils généraux  :
 - Quand j'avais des bugs qui apparaissaient, dans 80% des cas c'était à cause d'une mauvaise conversion / utilisation des int et des float.
 - Utilisez les images de la minilibx, surtout pas la fonction put pixel.
-- Burning Ship est un bonus vraiment très facile à faire, mais il existe beaucoup d'autres très belles fractales également (Sierpinski par exemple).
+- Burning Ship est un bonus vraiment très facile à faire, mais il existe beaucoup d'autres très belles fractales (Sierpinski par exemple).
 - Pour éviter les ralentissements dans l'utilisation du zoom et les déplacements, mieux vaut se contenter d'une fenêtre relativement petite et d'un nombre d'itérations relativement restreint. Par ailleurs, il faut exécuter la minilibx à partir du Makefile (allez voir le Makefile pour comparer avec le vôtre, un ralentissement pourrait venir de là) !
 
 
